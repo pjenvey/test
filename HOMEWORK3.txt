@@ -1,0 +1,51 @@
+Given homework #2, add the following features to it, via the optparse
+module:
+
+o Accept an optional host and port arguments. -o HOST (or --host=HOST)
+and -p PORT (or --port=PORT). These default to Homework #2's values if
+not defined.
+
+o Accept an optional command line argument -e ENCODING (or
+--encoding=ENCODING). When defined, makes the server encode the
+accepted data from the client (the data printed to stdout) with that
+encoder.
+
+Output should be as follows:
+
+$ python cogserver2.py --help
+usage: cogserver2.py [options]
+
+options:
+  -h, --help            show this help message and exit
+  -o HOST, --host=HOST  the host to bind/connect to
+  -p PORT, --port=PORT  the port to bind/connect to
+  -e ENCODING, --encoding=ENCODING
+                        server's output encoding
+
+
+$ python cogserver2.py -o localhost -p 9500
+CogServer (thread: Thread-1): ready to serve on port: 9500
+cog_client (thread: MainThread): connecting to port: 9500
+Welcome to CogServer ('127.0.0.1', 50791)
+fhc qbtubhfr...
+
+        JUNG!
+
+
+$ python cogserver2.py -e string_escape
+CogServer (thread: Thread-1): ready to serve on port: 8005
+cog_client (thread: MainThread): connecting to port: 8005
+Welcome to CogServer ('127.0.0.1', 50802)
+fhc qbtubhfr...\r\n\r\n\tJUNG!
+
+
+$ python cogserver2.py -p 9600 -e hex
+CogServer (thread: Thread-1): ready to serve on port: 9600
+cog_client (thread: MainThread): connecting to port: 9600
+Welcome to CogServer ('127.0.0.1', 50808)
+6668632071627475626866722e2e2e0d0a0d0a094a554e4721
+
+
+Hints:
+
+o Encoding a string is as easy as: somestr.encode(encoding)
